@@ -1,19 +1,21 @@
 
 svg {
-border: 1px solid #000;
+	border: 2px solid gray;
+	margin: 15px;
+	padding: 10px;
 }
 
-.axis text
-{
-fill: #333;
-font-family: sans-serif;
-font-size: 10px;
+.axis text {
+	fill: #00308F;
+	font-family: sans-serif;
+	font-size: 12px;
+
 }
-.axis .domain
-{
-opacity: 0;
+
+.axis .domain {
+	opacity: 0;
 }
-.tick
-{
-stroke: #ccc;
+
+.tick {
+	stroke: #ccc;
 }

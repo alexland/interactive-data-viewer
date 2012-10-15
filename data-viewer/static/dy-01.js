@@ -12,19 +12,18 @@ $(function() {
 		yRange = d3.scale.linear()
 			.range ([HEIGHT - MARGINS.top, MARGINS.bottom])
 			.domain([0, 500]),
-
 		xAxis = d3.svg.axis()
 			.scale(xRange)
 			.tickSize(5)
 			.tickSubdivide(true),
 		yAxis = d3.svg.axis()
 			.scale(yRange)
-			.tickSize(5)
+			.tickSize(7)
 			.orient("left")
 			.tickSubdivide(true);
 		init();
 
-	function init () {
+	function init() {
 		vis.append("svg:g")
 			.attr("class", "x axis")
 			.attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
@@ -36,7 +35,7 @@ $(function() {
 		update ();
 	}
 
-	function update () {
+	function update() {
 		var newData = randData(),
 			circles = vis.selectAll("circle")
 				.data(newData, function (d) {
@@ -78,25 +77,24 @@ $(function() {
 			.transition().duration(750).ease("linear")
 			.attr("r", 0)
 			.remove ();
-		// setTimeout (update, 10000);
 	}
 
-	function randData () {
-		var n = randRange (2, 6),
+	function randData() {
+		var n = randRange(2, 6),
 			dataset = [];
-		for (var i = 0; i < n; i++) {
+		for (var i=0; i<n; i++) {
 			var data = {
 				id: i,
-				value1: randRange (0, 300),
-				value2: randRange (0, 300),
-				value3: randRange (3, 20)
+				value1: randRange (1, 10),
+				value2: randRange (0, 100),
+				value3: randRange (2, 10)
 			};
 			dataset.push (data);
 		}
 		return dataset;
 	}
 
-	function randRange (min, max) {
+	function randRange(min, max) {
 		return Math.round (Math.random() * (max - min) + min);
 	}
 
