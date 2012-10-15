@@ -5,7 +5,6 @@ $(function() {
 		WIDTH = 500,
 		HEIGHT = 300,
 		MARGINS = {top: 20, right: 30, bottom: 30, left: 30},
-
 		xRange = d3.scale.linear()
 			.range ([MARGINS.left, WIDTH - MARGINS.right])
 			.domain([100, 250]),
@@ -32,7 +31,6 @@ $(function() {
 			.attr("class", "y axis")
 			.attr("transform", "translate(" + (MARGINS.left) + ",0)")
 			.call(yAxis);
-		update ();
 	}
 
 	function update() {
