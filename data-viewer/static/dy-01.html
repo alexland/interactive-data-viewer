@@ -4,22 +4,62 @@
 		<meta http-equiv="content-type" charset=utf-8">
 
 		<title>d3-transition demo</title>
-		<link rel="stylesheet" href="button.css"/>
 		<link rel="stylesheet" href="dy-01.css" />
+		<link rel="stylesheet" href="button.css"/>
+		<link rel="stylesheet" href="prettyCheckable/prettyCheckable.css" />
 		<script src="jquery-1.8.min.js"></script>
+		<script src="prettyCheckable/prettyCheckable.js"></script>
+
+
 	</head>
 
 	<body>
-		<svg id="viz" width="500" height="300"></svg>
-			<script src="D3/d3.v2.min.js"></script>
-			<script src="dy-01.js"></script>
-			<div id="viz">
+		<div id="wrap">
+			<div id="colLeft">
+				<form>
+					<fieldset id="fs1">
+						<legend></legend>
+
+						<div>
+							<label>
+								<input type="checkbox" class="cb" 
+									value="yes" id="cb1" 
+									name="answer" />
+								label1
+							</label>
+						</div>
+
+						<div>
+							<label>
+								<input type="checkbox" class="cb" 
+									value="yes" id="cb2" 
+									name="answer" />
+								label2
+							</label>
+						</div>
+
+						<div>
+							<label>
+								<input type="checkbox" class="cb" 
+									value="yes" id="cb3" 
+									name="answer" />
+								label3
+							</label>
+						</div>
+					</fieldset>
+
+					<button id="btn1" class="first last center">
+						update
+					</button>
+				</form>
 			</div>
-			<div id="userCtrl">
-		 		<button id="btn1" class="first last">
-		 			update
-		 		</button>
+
+			<div id="colRight">
+				<svg id="viz" width="500" height="300"></svg>
+					<script src="D3/d3.v2.min.js"></script>
+					<script src="dy-01.js"></script>
 			</div>
+		</div>
 	</body>
 </html>
 
