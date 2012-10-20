@@ -20,10 +20,12 @@ $(function() {
 			.tickSize(7)
 			.orient("left")
 			.tickSubdivide(true);
-		init();
+		drawingData;
+
 
 	function init() {
-		vis.append("svg:g")
+		d3.json("t1.json", function(data) {
+			vis.append("svg:g")
 			.attr("class", "x axis")
 			.attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
 			.call(xAxis);
@@ -31,12 +33,13 @@ $(function() {
 			.attr("class", "y axis")
 			.attr("transform", "translate(" + (MARGINS.left) + ",0)")
 			.call(yAxis);
+		update(data);
+		})
 	}
 
-	function update() {
-		var newData = randData(),
-			circles = vis.selectAll("circle")
-				.data(newData, function (d) {
+	function update(drawingData) {
+		var circles = vis.selectAll("circle")
+				.data(drawingData, function (d) {
 					return d.id;
 				}),
 			// axes aren't data points,
@@ -47,13 +50,13 @@ $(function() {
 				.ease("linear");
 		// update the domain of the x range
 		xRange.domain([
-			d3.min (newData, function(d) { return d.value1; }),
-			d3.max (newData, function(d) { return d.value1; })
+			d3.min (drawingData, function(d) { return d.value1; }),
+			d3.max (drawingData, function(d) { return d.value1; })
 		]);
 		// update the domain of the y range
 		yRange.domain([
-			d3.min (newData, function(d) { return d.value2; }),
-			d3.max (newData, function(d) { return d.value2; })
+			d3.min (drawingData, function(d) { return d.value2; }),
+			d3.max (drawingData, function(d) { return d.value2; })
 		]);
 		// transition the axes
 		transition.select(".x.axis").call(xAxis);
