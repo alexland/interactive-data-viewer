@@ -5,3 +5,4 @@
 flot/
 socket.io.js
 jquery*.*
+*.json
