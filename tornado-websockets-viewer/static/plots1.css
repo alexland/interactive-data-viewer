@@ -1,0 +1,23 @@
+
+#chart1-header {
+	color: #030377;
+	font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	font-size: 1.3em;
+}
+
+#metrics-table {
+	margin-left: 20px;
+	padding-left: 20px;
+	color: #030377;
+	font-size: 12px;
+	font-weight: 300;
+	font-family: Arial;
+	border-collapse: separate;
+}
+
+#plot-window-1 {
+	width: 600px;
+	height: 300px;
+	margin: 20px;
+	padding: 10px;
+}
