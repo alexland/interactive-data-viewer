@@ -3,7 +3,10 @@
 import os
 import datetime
 from tornado import web
-from tornadio2 import SocketConnection, TornadioRouter, SocketServer, event
+from tornadio2 import SocketConnection
+from tornadio2 import TornadioRouter
+from tornadio2 import SocketServer
+from tornadio2 import event
 
 
 ROOT = os.path.normpath(os.path.dirname(__file__))
@@ -11,7 +14,7 @@ ROOT = os.path.normpath(os.path.dirname(__file__))
 
 class IndexHandler(web.RequestHandler):
 	"""
-	regular HTTP handler to serve the ping page
+	ordinary HTTP handler to serve the ping page
 	"""
 
 	def get(self):
@@ -27,7 +30,7 @@ class SocketIOHandler(web.RequestHandler):
 class StatsHandler(web.RequestHandler):
 
 	def get(self):
-		self.render('templates/plots1.html')
+		self.render('templates/metrics1.html')
 
 
 class PingConnection(SocketConnection):
@@ -38,7 +41,7 @@ class PingConnection(SocketConnection):
 		return client, [now.hour, now.minute, now.second, now.microsecond / 500]
 
 	@event
-	def stats(self):
+	def metrics1(self):
 		return self.session.server.stats.dump()
 
 
@@ -51,7 +54,7 @@ PingRouter = TornadioRouter(PingConnection,
 application = web.Application(
 	PingRouter.apply_routes([
 	                        (r"/", IndexHandler),
-							(r"/stats", StatsHandler),
+							(r"/metrics1", StatsHandler),
 							(r"/socket.io.js", SocketIOHandler)]),
 	flash_policy_port = 843,
 	debug=True,
@@ -60,8 +63,9 @@ application = web.Application(
 	socket_io_port = 8001,
 )
 
+
 if __name__ == "__main__":
-	import logging
-	logging.getLogger().setLevel(logging.DEBUG)
+	# import logging
+	# logging.getLogger().setLevel(logging.DEBUG)
 	# create & start tornadio server
 	SocketServer(application)

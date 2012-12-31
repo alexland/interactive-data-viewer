@@ -1,17 +1,17 @@
 
  $(function() {
 
-	var stats = new io.connect('http://' + window.location.host);
+	var metrics1 = new io.connect('http://' + window.location.host);
 		// establish event handlers
-		stats.on('disconnect', function() {
-			stats.socket.reconnect();
+		metrics1.on('disconnect', function() {
+			metrics1.socket.reconnect();
 		});
 		var plotted_metrics = [
-			"active sessions",
+			"active_sessions",
 			"active_connections",
 			"connections/sec",
-			"packets sent/sec",
-			"packets received/sec"
+			"packets_sent_ps",
+			"packets_recv_ps"
 		];
 		var data = [],
 			totalPoints = 100;
@@ -46,7 +46,7 @@
 			return res;
 		}
 		function queryStats() {
-			stats.emit('stats', function(data) {
+			metrics1.emit('metrics1', function(data) {
 				appendData(data);
 				plot.setData(prepData());
 				plot.draw();
